@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 15mm;  /* Providing a margin for the printer */
+        }
+
+        .bingo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10mm;  /* Adjusted spacing for printing */
+            width: 100%;
+        }
+
+        .bingo-card {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: auto repeat(5, 1fr);
+            border: 1mm solid black;  /* Adjusted for printing */
+            gap: 2mm;  /* Adjusted spacing for printing */
+            padding: 5mm;  /* Adjusted for printing */
+        }
+
+        .bingo-title {
+            grid-column: 1 / span 5;
+            font-size: 5mm;  /* Adjusted for printing */
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5mm;  /* Adjusted spacing for printing */
+        }
+
+        .bingo-cell {
+            width: 15mm;  /* Adjusted for printing */
+            height: 15mm;  /* Adjusted for printing */
+            text-align: center;
+            line-height: 15mm;  /* Adjusted for printing */
+            border: 0.5mm solid grey;  /* Adjusted for printing */
+        }
+    </style>
+</head>
+<body>
+    <div class="bingo-container">
+        <div class="bingo-card">
+            <div class="bingo-title">Card 1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <!-- ... repeat for all 25 cells of the first card -->
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            
+        </div>
+        <div class="bingo-card">
+            <div class="bingo-title">Card 2</div>
+            <!-- ... -->
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <!-- ... repeat for all 25 cells of the first card -->
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>            
+        </div>
+        <div class="bingo-card">
+            <div class="bingo-title">Card 3</div>
+            <!-- ... -->
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <!-- ... repeat for all 25 cells of the first card -->
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>            
+        </div>
+        <div class="bingo-card">
+            <div class="bingo-title">Card 4</div>
+            <!-- ... -->
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <!-- ... repeat for all 25 cells of the first card -->
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>
+            <div class="bingo-cell">1</div>            
+        </div>
+    </div>
+</body>
+</html>

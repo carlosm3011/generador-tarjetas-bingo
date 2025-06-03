@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 15mm;
+        }
+
+        .bingo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10mm;
+            width: 100%;
+            page-break-after: always; /* Introduce a page break after every 4 cards */
+        }
+
+        .bingo-card {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: auto repeat(5, 1fr);
+            border: 1mm solid black;
+            gap: 2mm;
+            padding: 5mm;
+            padding-bottom: 10mm;  
+        }
+
+        .bingo-title {
+            grid-column: 1 / span 5;
+            font-size: 9mm;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5mm;
+        }
+
+        .bingo-cell {
+            width: 15mm;
+            height: 15mm;
+            text-align: center;
+            font-size: 8mm;
+            line-height: 15mm;
+            border: 0.5mm solid grey;
+        }
+
+        /* Print-specific styling */
+        @media print {
+            .bingo-container:last-of-type {
+                page-break-after: auto; /* Prevent an extra page being printed at the end */
+            }
+        }
+    </style>
+</head>
+
+<!-- ... (rest of the template remains unchanged) ... -->
+
+<body>
+    {% set card_list = cards.items()|list %}
+    {% for i in range(0, card_list|length, 4) %}
+        <div class="bingo-container">
+            {% for j in range(i, i+4) %}
+                {% if j < card_list|length %}
+                    {% set card_data = card_list[j] %}
+                    <div class="bingo-card">
+                        <div class="bingo-title">{{ card_data[1][0] }}</div>
+                        {% for number in card_data[1][1] %}
+                            <div class="bingo-cell">{{ number }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+</body>
+
+<!-- ... (rest of the template remains unchanged) ... -->
+
+</html>
