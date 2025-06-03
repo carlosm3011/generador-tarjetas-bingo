@@ -19,3 +19,8 @@ pipenv install -r requirements.txt # si estamos empezando de cero
        --output "bingo_life_2025.html"
 ```
 
+### Ejecutar el gui
+
+```
+pipenv run python3 app.py
+```
