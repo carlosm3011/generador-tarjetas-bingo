@@ -4,7 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
 jinja2 = "*"
+flask = "*"
+typer = "*"
 
 [dev-packages]
