@@ -55,20 +55,36 @@
             outline: none;
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
+        .btn-row {
+            display: flex;
+            gap: 10px;
             margin-top: 20px;
         }
 
-        .submit-btn:hover {
+        .submit-btn {
+            flex: 1;
+            padding: 15px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-open {
+            background-color: #4CAF50;
+        }
+
+        .btn-open:hover {
             background-color: #45a049;
+        }
+
+        .btn-download {
+            background-color: #2196F3;
+        }
+
+        .btn-download:hover {
+            background-color: #1976D2;
         }
 
         .help-text {
@@ -82,7 +98,7 @@
     <div class="container">
         <h1>Bingo Card Generator</h1>
 
-        <form action="/generate" method="POST" target="_blank">
+        <form id="bingo-form" action="/generate" method="POST">
             <div class="form-group">
                 <label for="title">Card Title:</label>
                 <input type="text" id="title" name="title" value="Bingo Life 2026" required>
@@ -123,7 +139,14 @@
                 <div class="help-text">Paper size used when printing</div>
             </div>
 
-            <button type="submit" class="submit-btn">Generate Bingo Cards</button>
+            <div class="btn-row">
+                <button type="submit" name="mode" value="open"
+                        class="submit-btn btn-open"
+                        onclick="this.form.target='_blank'">Open in Tab</button>
+                <button type="submit" name="mode" value="download"
+                        class="submit-btn btn-download"
+                        onclick="this.form.target='_self'">Download</button>
+            </div>
         </form>
     </div>
 </body>

@@ -42,6 +42,10 @@ def generate_bingo():
     response = make_response(rendered_html)
     response.headers['Content-Type'] = 'text/html'
 
+    if request.form.get('mode') == 'download':
+        filename = f'bingo_{datetime.now().strftime("%y%m%d")}.html'
+        response.headers['Content-Disposition'] = f'attachment; filename={filename}'
+
     return response
 
 if __name__ == '__main__':
