@@ -4,27 +4,29 @@ Generates randomized bingo cards (numbers 1–90, 25 per card) as print-ready HT
 
 ## Quick Start
 
-### Crear el virtual environment
+### Instalar dependencias
 
 ```
-pipenv install # si ya esta el pipfile.lock
-pipenv install -r requirements.txt # si estamos empezando de cero
+uv sync
 ```
 
 ### Ejecutar la generación (CLI)
 
 ```
-pipenv run python3 bingo_generator.py \
+uv run python3 bingo_generator.py \
       --template ./bingo_template_multipage.html \
       --title "Bingo Life 2026" \
       --numcards 200 \
+      --layout 2x2 \
       --output "bingo_life_2026.html"
 ```
+
+Layouts disponibles: `2x2` (4 cards/page, default), `3x2` (6 cards/page), `3x3` (9 cards/page).
 
 ### Ejecutar el GUI (Flask web app)
 
 ```
-pipenv run python3 app.py
+uv run python3 app.py
 # Abre http://localhost:5001
 ```
 
@@ -33,7 +35,7 @@ pipenv run python3 app.py
 Estima cuántas bolas se necesitan sacar hasta que alguien gane:
 
 ```
-pipenv run python3 bingo_simulation.py --nmax 90 --cmax 200 --simulations 10000
+uv run python3 bingo_simulation.py --nmax 90 --cmax 200 --simulations 10000
 ```
 
 ## Components

@@ -1,0 +1,10 @@
+[project]
+name = "generador-tarjetas-bingo"
+version = "1.0.0"
+description = "Bingo card generator for live events"
+requires-python = ">=3.10"
+dependencies = [
+    "jinja2",
+    "flask",
+    "typer",
+]

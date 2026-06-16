@@ -8,37 +8,34 @@ Bingo card generator used for live "Bingo Life" events (2023, 2024, 2025). Origi
 
 ## Development Environment Setup
 
-This project uses Python with pipenv for dependency management:
+This project uses Python with uv for dependency management:
 
 ```bash
-# Install dependencies
-pipenv install  # if Pipfile.lock exists
-pipenv install -r requirements.txt  # starting from scratch
-
-# Activate virtual environment
-pipenv shell
+# Install dependencies and create virtualenv
+uv sync
 ```
 
 ## Common Commands
 
 ### Generate Bingo Cards (CLI)
 ```bash
-pipenv run python3 bingo_generator.py \
+uv run python3 bingo_generator.py \
     --template ./bingo_template_multipage.html \
     --title "Bingo Life 2026" \
     --numcards 200 \
+    --layout 2x2 \
     --output "bingo_life_2026.html"
 ```
 
 ### Run the Web UI
 ```bash
-pipenv run python3 app.py
+uv run python3 app.py
 # Opens at http://localhost:5001
 ```
 
 ### Run Monte Carlo Simulation
 ```bash
-pipenv run python3 bingo_simulation.py --nmax 90 --cmax 200 --simulations 10000
+uv run python3 bingo_simulation.py --nmax 90 --cmax 200 --simulations 10000
 ```
 
 ### Available Templates

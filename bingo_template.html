@@ -2,77 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bingo Cards</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 15mm;  /* Providing a margin for the printer */
+            padding: 15mm;
+        }
+
+        .bingo-metadata {
+            margin-bottom: 10mm;
+            font-family: Arial;
+            font-weight: bold;
+            font-size: 5mm;
         }
 
         .bingo-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10mm;  /* Adjusted spacing for printing */
+            grid-template-columns: repeat({{ layout.cols }}, 1fr);
+            gap: {{ layout.card_gap }}mm;
             width: 100%;
         }
 
         .bingo-card {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: auto repeat(5, 1fr);
-            border: 1mm solid black;  /* Adjusted for printing */
-            gap: 2mm;  /* Adjusted spacing for printing */
-            padding: 5mm;  /* Adjusted for printing */
+            grid-template-columns: repeat(5, {{ layout.cell_size }}mm);
+            grid-template-rows: auto repeat(5, {{ layout.cell_size }}mm);
+            border: 1mm solid black;
+            gap: {{ layout.cell_gap }}mm;
+            padding: {{ layout.card_padding }}mm;
         }
 
         .bingo-title {
             grid-column: 1 / span 5;
-            font-size: 5mm;  /* Adjusted for printing */
+            font-size: {{ layout.title_font }}mm;
             font-weight: bold;
             text-align: center;
-            margin-bottom: 5mm;  /* Adjusted spacing for printing */
+            margin-bottom: {{ layout.cell_gap }}mm;
         }
 
         .bingo-cell {
-            width: 15mm;  /* Adjusted for printing */
-            height: 15mm;  /* Adjusted for printing */
+            width: {{ layout.cell_size }}mm;
+            height: {{ layout.cell_size }}mm;
             text-align: center;
-            line-height: 15mm;  /* Adjusted for printing */
-            border: 0.5mm solid grey;  /* Adjusted for printing */
+            font-size: {{ layout.cell_font }}mm;
+            line-height: {{ layout.cell_size }}mm;
+            border: 0.5mm solid grey;
         }
-
-        .bingo-metadata {
-            margin-bottom: 10px;
-            font-family: Arial;
-            font-weight: bold;
-            font-size: 18px;
-        }    
-</style>
+    </style>
 </head>
 <body>
-
-<!-- ... (rest of the template remains unchanged) ... -->
-
-<div class="bingo-metadata">
-    Tarjetas del {{ metadata['rango_tarjetas'] }}
-</div>
-
-<div class="bingo-container">
-    {% for card_id, card_data in cards.items() %}
-    <div class="bingo-card">
-        <div class="bingo-title">{{ card_data[0] }}</div>  <!-- card_data[0] is the title -->
-        {% for number in card_data[1] %}  <!-- card_data[1] are the numbers -->
-            <div class="bingo-cell">{{ number }}</div>
+    <div class="bingo-metadata">
+        Tarjetas del {{ metadata['rango_tarjetas'] }}
+    </div>
+    <div class="bingo-container">
+        {% for card_id, card_data in cards.items() %}
+        <div class="bingo-card">
+            <div class="bingo-title">{{ card_data[0] }}</div>
+            {% for number in card_data[1] %}
+                <div class="bingo-cell">{{ number }}</div>
+            {% endfor %}
+        </div>
         {% endfor %}
     </div>
-    {% endfor %}
-</div>
-
-<!-- ... (rest of the template remains unchanged) ... -->
-
-
-
 </body>
 </html>

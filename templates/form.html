@@ -12,33 +12,33 @@
             padding: 20px;
             background-color: #f5f5f5;
         }
-        
+
         .container {
             background-color: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        
+
         h1 {
             color: #333;
             text-align: center;
             margin-bottom: 30px;
         }
-        
+
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
             color: #555;
         }
-        
-        input[type="text"], 
-        input[type="number"], 
+
+        input[type="text"],
+        input[type="number"],
         select {
             width: 100%;
             padding: 10px;
@@ -47,14 +47,14 @@
             font-size: 16px;
             box-sizing: border-box;
         }
-        
-        input[type="text"]:focus, 
-        input[type="number"]:focus, 
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
         select:focus {
             border-color: #4CAF50;
             outline: none;
         }
-        
+
         .submit-btn {
             width: 100%;
             padding: 15px;
@@ -66,11 +66,11 @@
             cursor: pointer;
             margin-top: 20px;
         }
-        
+
         .submit-btn:hover {
             background-color: #45a049;
         }
-        
+
         .help-text {
             font-size: 14px;
             color: #777;
@@ -80,28 +80,44 @@
 </head>
 <body>
     <div class="container">
-        <h1>🎯 Bingo Card Generator</h1>
-        
+        <h1>Bingo Card Generator</h1>
+
         <form action="/generate" method="POST">
             <div class="form-group">
                 <label for="title">Card Title:</label>
-                <input type="text" id="title" name="title" value="Bingo Life 2025" required>
+                <input type="text" id="title" name="title" value="Bingo Life 2026" required>
                 <div class="help-text">Title that will appear on each bingo card</div>
             </div>
-            
+
             <div class="form-group">
                 <label for="numcards">Number of Cards:</label>
                 <input type="number" id="numcards" name="numcards" value="4" min="1" max="1000" required>
-                <div class="help-text">How many bingo cards to generate (1-1000)</div>
+                <div class="help-text">How many bingo cards to generate (1–1000)</div>
             </div>
-            
+
+            <div class="form-group">
+                <label for="layout">Grid Layout:</label>
+                <select id="layout" name="layout" required>
+                    {% for key in layouts %}
+                        <option value="{{ key }}" {% if key == default_layout %}selected{% endif %}>
+                            {% if key == '2x2' %}2×2 — 4 cards per page (default)
+                            {% elif key == '3x2' %}3×2 — 6 cards per page
+                            {% elif key == '3x3' %}3×3 — 9 cards per page
+                            {% else %}{{ key }}
+                            {% endif %}
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="help-text">Number of cards per printed page</div>
+            </div>
+
             <div class="form-group">
                 <label for="template">Template Style:</label>
                 <select id="template" name="template" required>
                     {% for key, filename in templates.items() %}
                         <option value="{{ key }}" {% if key == 'multipage' %}selected{% endif %}>
-                            {% if key == 'basic' %}Basic (Single Page)
-                            {% elif key == 'multipage' %}Multi-page (Recommended)
+                            {% if key == 'multipage' %}Multi-page (Recommended)
+                            {% elif key == 'basic' %}Basic (Single Page)
                             {% elif key == 'a4' %}A4 Format
                             {% else %}{{ key|title }}
                             {% endif %}
@@ -110,7 +126,7 @@
                 </select>
                 <div class="help-text">Choose the layout style for your bingo cards</div>
             </div>
-            
+
             <button type="submit" class="submit-btn">Generate Bingo Cards</button>
         </form>
     </div>
