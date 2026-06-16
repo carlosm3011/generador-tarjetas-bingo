@@ -41,7 +41,6 @@ def generate_bingo():
 
     response = make_response(rendered_html)
     response.headers['Content-Type'] = 'text/html'
-    response.headers['Content-Disposition'] = f'attachment; filename=bingo_{datetime.now().strftime("%y%m%d")}.html'
 
     return response
 
