@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Project Background
+
+Bingo card generator used for live "Bingo Life" events (2023, 2024, 2025). Originally developed by Carlos Martinez in 2025 with assistance from Claude (Anthropic). Numbers range 1–90, 25 per card — standard Spanish/Latin American bingo format.
+
 ## Development Environment Setup
 
 This project uses Python with pipenv for dependency management:
@@ -17,13 +21,24 @@ pipenv shell
 
 ## Common Commands
 
-### Generate Bingo Cards
+### Generate Bingo Cards (CLI)
 ```bash
 pipenv run python3 bingo_generator.py \
     --template ./bingo_template_multipage.html \
-    --title "Bingo Life 2025" \
+    --title "Bingo Life 2026" \
     --numcards 200 \
-    --output "bingo_life_2025.html"
+    --output "bingo_life_2026.html"
+```
+
+### Run the Web UI
+```bash
+pipenv run python3 app.py
+# Opens at http://localhost:5001
+```
+
+### Run Monte Carlo Simulation
+```bash
+pipenv run python3 bingo_simulation.py --nmax 90 --cmax 200 --simulations 10000
 ```
 
 ### Available Templates
