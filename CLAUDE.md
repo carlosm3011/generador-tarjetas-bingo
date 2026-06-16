@@ -68,4 +68,12 @@ All measurements are in mm, pre-calculated for A4/Letter so nothing is left to t
 
 ### Web UI
 - `templates/form.html` — form with title, card count, layout, and page size selectors
-- Two submit buttons: "Open in Tab" (`target=_blank`, no Content-Disposition) and "Download" (`Content-Disposition: attachment`)
+- Two `type="button"` buttons; JS builds the REST URL and either calls `window.open(..., '_blank')` or `window.location.href`
+- No form submission; JS is scoped to the form page and has no effect on the generated output
+
+### REST API
+```
+GET /generate/<layout>/<page_size>/<numcards>?title=...&download=true
+```
+- Path params validated against `LAYOUTS` / `PAGE_SIZES`; `numcards` must be 1–1000
+- `download=true` adds `Content-Disposition: attachment`; omitting it renders inline

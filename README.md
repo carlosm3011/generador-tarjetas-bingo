@@ -28,6 +28,22 @@ uv run python3 app.py
 
 The web UI lets you fill in the options and either open the result in a new tab or download it.
 
+### REST API
+
+The generator is also directly accessible via URL:
+
+```
+GET /generate/<layout>/<page_size>/<numcards>?title=...&download=true
+```
+
+Examples:
+```
+/generate/2x2/a4/200?title=Bingo+Life+2026
+/generate/3x2/letter/100?title=Bingo+Life+2026&download=true
+```
+
+`download=true` triggers a file download; omitting it renders in the browser.
+
 ### Monte Carlo Simulation
 
 Estimates how many draws until the first card wins:

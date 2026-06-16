@@ -98,7 +98,7 @@
     <div class="container">
         <h1>Bingo Card Generator</h1>
 
-        <form id="bingo-form" action="/generate" method="POST">
+        <form id="bingo-form">
             <div class="form-group">
                 <label for="title">Card Title:</label>
                 <input type="text" id="title" name="title" value="Bingo Life 2026" required>
@@ -140,14 +140,32 @@
             </div>
 
             <div class="btn-row">
-                <button type="submit" name="mode" value="open"
-                        class="submit-btn btn-open"
-                        onclick="this.form.target='_blank'">Open in Tab</button>
-                <button type="submit" name="mode" value="download"
-                        class="submit-btn btn-download"
-                        onclick="this.form.target='_self'">Download</button>
+                <button type="button" id="btn-open"
+                        class="submit-btn btn-open">Open in Tab</button>
+                <button type="button" id="btn-download"
+                        class="submit-btn btn-download">Download</button>
             </div>
         </form>
+
+        <script>
+            function buildUrl(download) {
+                const layout   = document.getElementById('layout').value;
+                const pageSize = document.getElementById('page_size').value;
+                const numcards = document.getElementById('numcards').value;
+                const title    = document.getElementById('title').value;
+                let url = `/generate/${layout}/${pageSize}/${numcards}?title=${encodeURIComponent(title)}`;
+                if (download) url += '&download=true';
+                return url;
+            }
+
+            document.getElementById('btn-open').addEventListener('click', function () {
+                window.open(buildUrl(false), '_blank');
+            });
+
+            document.getElementById('btn-download').addEventListener('click', function () {
+                window.location.href = buildUrl(true);
+            });
+        </script>
     </div>
 </body>
 </html>
