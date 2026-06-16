@@ -18,11 +18,11 @@ LAYOUTS = {
         'cell_font': 8, 'title_font': 9,
     },
     '3x2': {
-        # 3 rows, 2 cols — cards are 86mm wide × 83mm tall on A4
+        # 3 rows, 2 cols — cards are 86mm wide × 74mm tall on A4 (usable: 180×267mm)
         'cols': 2, 'rows': 3,
         'card_gap': 8, 'card_padding': 4,
-        'cell_gap': 2, 'cell_size': 11,
-        'cell_font': 7, 'title_font': 7,
+        'cell_gap': 2, 'cell_size': 10,
+        'cell_font': 6, 'title_font': 6,
     },
     '3x3': {
         'cols': 3, 'rows': 3,

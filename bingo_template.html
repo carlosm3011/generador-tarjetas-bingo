@@ -12,7 +12,12 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 15mm;
+            padding: 15mm; /* screen preview only; removed on print below */
+        }
+
+        /* On print, @page margin handles spacing — body padding would double it */
+        @media print {
+            body { padding: 0; }
         }
 
         .bingo-metadata {
