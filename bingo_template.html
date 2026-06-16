@@ -45,6 +45,8 @@
             display: grid;
             grid-template-columns: repeat(5, {{ layout.cell_size }}mm);
             grid-template-rows: auto repeat(5, {{ layout.cell_size }}mm);
+            justify-content: center;
+            align-content: center;
             border: 1mm solid black;
             gap: {{ layout.cell_gap }}mm;
             padding: {{ layout.card_padding }}mm;
