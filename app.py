@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, make_response
 from jinja2 import Environment, FileSystemLoader
 from datetime import datetime
 from bingo_generator import generate_bingo_numbers
-from bingo_layouts import LAYOUTS, DEFAULT_LAYOUT, PAGE_SIZES, DEFAULT_PAGE_SIZE, MAX_NUMBERS, DEFAULT_MAX_NUMBER
+from bingo_layouts import LAYOUTS, DEFAULT_LAYOUT, PAGE_SIZES, DEFAULT_PAGE_SIZE, MAX_NUMBERS, DEFAULT_MAX_NUMBER, VERSION
 
 app = Flask(__name__)
 
@@ -15,7 +15,8 @@ def index():
                            page_sizes=PAGE_SIZES,
                            default_page_size=DEFAULT_PAGE_SIZE,
                            max_numbers=MAX_NUMBERS,
-                           default_max_number=DEFAULT_MAX_NUMBER)
+                           default_max_number=DEFAULT_MAX_NUMBER,
+                           version=VERSION)
 
 @app.route('/generate/<layout>/<page_size>/<int:numcards>/<int:maxnum>', methods=['GET'])
 def generate_bingo(layout, page_size, numcards, maxnum):

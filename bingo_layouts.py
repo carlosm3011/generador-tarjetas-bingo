@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+VERSION = "4.0"
+
 # All measurements in mm, calculated for A4 (180mm x 267mm usable area after 15mm body padding).
 # Letter is slightly wider (185.9mm) but shorter (249.4mm); current cell sizes fit both.
 

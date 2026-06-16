@@ -11,7 +11,7 @@ from jinja2 import Environment, FileSystemLoader
 import random
 import argparse
 from datetime import datetime
-from bingo_layouts import LAYOUTS, DEFAULT_LAYOUT, PAGE_SIZES, DEFAULT_PAGE_SIZE, MAX_NUMBERS, DEFAULT_MAX_NUMBER
+from bingo_layouts import LAYOUTS, DEFAULT_LAYOUT, PAGE_SIZES, DEFAULT_PAGE_SIZE, MAX_NUMBERS, DEFAULT_MAX_NUMBER, VERSION
 random.seed()
 
 def generate_bingo_numbers(_sort=True, maxnum=DEFAULT_MAX_NUMBER):
@@ -46,6 +46,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate Bingo Cards.')
+    parser.add_argument('--version', action='version', version=f'bingo-generator {VERSION}')
     parser.add_argument('--title', default='Bingo Card', help='Title of the bingo cards.')
     parser.add_argument('--numcards', type=int, default=4, help='Number of bingo cards to generate.')
     parser.add_argument('--layout', default=DEFAULT_LAYOUT, choices=list(LAYOUTS.keys()),

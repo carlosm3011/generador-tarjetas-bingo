@@ -1,6 +1,6 @@
 [project]
 name = "generador-tarjetas-bingo"
-version = "1.0.0"
+version = "4.0.0"
 description = "Bingo card generator for live events"
 requires-python = ">=3.10"
 dependencies = [
