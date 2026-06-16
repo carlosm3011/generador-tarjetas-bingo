@@ -16,6 +16,7 @@ uv run python3 bingo_generator.py \
       --numcards 200 \
       --layout 2x2 \
       --page-size a4 \
+      --maxnum 90 \
       --output "bingo_life_2026.html"
 ```
 
@@ -38,8 +39,8 @@ GET /generate/<layout>/<page_size>/<numcards>?title=...&download=true
 
 Examples:
 ```
-/generate/2x2/a4/200?title=Bingo+Life+2026
-/generate/3x2/letter/100?title=Bingo+Life+2026&download=true
+/generate/2x2/a4/200/90?title=Bingo+Life+2026
+/generate/3x2/letter/100/75?title=Bingo+Life+2026&download=true
 ```
 
 `download=true` triggers a file download; omitting it renders in the browser.
@@ -59,6 +60,7 @@ uv run python3 bingo_simulation.py --nmax 90 --cmax 200 --simulations 10000
 | `--layout` | `2x2`, `3x2`, `3x3` | `2x2` | Cards per page (rows × cols): 4, 6, or 9 |
 | `--page-size` | `a4`, `letter` | `a4` | Paper size |
 | `--numcards` | 1–1000 | 4 | Number of cards to generate |
+| `--maxnum` | `90`, `75` | `90` | Highest number on cards (90-ball or 75-ball) |
 | `--title` | string | `Bingo Card` | Title printed on each card |
 | `--output` | filename | `bingo_YYMMDD.html` | Output file |
 

@@ -11,11 +11,11 @@ from jinja2 import Environment, FileSystemLoader
 import random
 import argparse
 from datetime import datetime
-from bingo_layouts import LAYOUTS, DEFAULT_LAYOUT, PAGE_SIZES, DEFAULT_PAGE_SIZE
+from bingo_layouts import LAYOUTS, DEFAULT_LAYOUT, PAGE_SIZES, DEFAULT_PAGE_SIZE, MAX_NUMBERS, DEFAULT_MAX_NUMBER
 random.seed()
 
-def generate_bingo_numbers(_sort=True):
-    sample = random.sample(range(1, 91), 25)
+def generate_bingo_numbers(_sort=True, maxnum=DEFAULT_MAX_NUMBER):
+    sample = random.sample(range(1, maxnum + 1), 25)
     if _sort:
         return sorted(sample)
     else:
@@ -33,10 +33,10 @@ def main(args):
     metadata = {
         "rango_tarjetas": f"1 al {args.numcards}",
         "fecha_produccion": datetime.now().strftime("%B %Y"),
-        "rango_numeros": "1 al 90",
+        "rango_numeros": f"1 al {args.maxnum}",
     }
 
-    cards_data = {i + 1: (args.title, generate_bingo_numbers()) for i in range(args.numcards)}
+    cards_data = {i + 1: (args.title, generate_bingo_numbers(maxnum=args.maxnum)) for i in range(args.numcards)}
 
     rendered_html = template.render(cards=cards_data, metadata=metadata, layout=layout, page_size=page_size)
 
@@ -52,6 +52,8 @@ if __name__ == "__main__":
                         help='Grid layout: 2x2 (default), 3x2, or 3x3.')
     parser.add_argument('--page-size', default=DEFAULT_PAGE_SIZE, choices=list(PAGE_SIZES.keys()),
                         dest='page_size', help='Paper size: a4 (default) or letter.')
+    parser.add_argument('--maxnum', type=int, default=DEFAULT_MAX_NUMBER, choices=list(MAX_NUMBERS.keys()),
+                        help='Highest number on cards: 90 (default) or 75.')
 
     default_output = "bingo_" + datetime.now().strftime('%y%m%d') + ".html"
     parser.add_argument('--output', default=default_output, help='Output file name.')

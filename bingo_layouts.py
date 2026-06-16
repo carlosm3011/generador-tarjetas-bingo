@@ -9,6 +9,13 @@ PAGE_SIZES = {
 
 DEFAULT_PAGE_SIZE = 'a4'
 
+MAX_NUMBERS = {
+    90: {'label': '90-ball (UK / Latin America)'},
+    75: {'label': '75-ball (North America)'},
+}
+
+DEFAULT_MAX_NUMBER = 90
+
 # Layout keys use rows×cols notation (e.g. 3x2 = 3 rows, 2 columns).
 LAYOUTS = {
     '2x2': {

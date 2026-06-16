@@ -23,6 +23,7 @@ uv run python3 bingo_generator.py \
     --numcards 200 \
     --layout 2x2 \
     --page-size a4 \
+    --maxnum 90 \
     --output "bingo_life_2026.html"
 ```
 
@@ -73,7 +74,7 @@ All measurements are in mm, pre-calculated for A4/Letter so nothing is left to t
 
 ### REST API
 ```
-GET /generate/<layout>/<page_size>/<numcards>?title=...&download=true
+GET /generate/<layout>/<page_size>/<numcards>/<maxnum>?title=...&download=true
 ```
-- Path params validated against `LAYOUTS` / `PAGE_SIZES`; `numcards` must be 1–1000
+- Path params validated against `LAYOUTS` / `PAGE_SIZES` / `MAX_NUMBERS`; `numcards` must be 1–1000
 - `download=true` adds `Content-Disposition: attachment`; omitting it renders inline
