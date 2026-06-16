@@ -100,9 +100,9 @@
                 <select id="layout" name="layout" required>
                     {% for key in layouts %}
                         <option value="{{ key }}" {% if key == default_layout %}selected{% endif %}>
-                            {% if key == '2x2' %}2×2 — 4 cards per page (default)
-                            {% elif key == '3x2' %}3×2 — 6 cards per page
-                            {% elif key == '3x3' %}3×3 — 9 cards per page
+                            {% if key == '2x2' %}2×2 — 4 cards per page, 2 rows × 2 cols (default)
+                            {% elif key == '3x2' %}3×2 — 6 cards per page, 3 rows × 2 cols
+                            {% elif key == '3x3' %}3×3 — 9 cards per page, 3 rows × 3 cols
                             {% else %}{{ key }}
                             {% endif %}
                         </option>
