@@ -112,19 +112,15 @@
             </div>
 
             <div class="form-group">
-                <label for="template">Template Style:</label>
-                <select id="template" name="template" required>
-                    {% for key, filename in templates.items() %}
-                        <option value="{{ key }}" {% if key == 'multipage' %}selected{% endif %}>
-                            {% if key == 'multipage' %}Multi-page (Recommended)
-                            {% elif key == 'basic' %}Basic (Single Page)
-                            {% elif key == 'a4' %}A4 Format
-                            {% else %}{{ key|title }}
-                            {% endif %}
+                <label for="page_size">Paper Size:</label>
+                <select id="page_size" name="page_size" required>
+                    {% for key, ps in page_sizes.items() %}
+                        <option value="{{ key }}" {% if key == default_page_size %}selected{% endif %}>
+                            {{ ps.label }}
                         </option>
                     {% endfor %}
                 </select>
-                <div class="help-text">Choose the layout style for your bingo cards</div>
+                <div class="help-text">Paper size used when printing</div>
             </div>
 
             <button type="submit" class="submit-btn">Generate Bingo Cards</button>

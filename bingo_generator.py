@@ -11,7 +11,7 @@ from jinja2 import Environment, FileSystemLoader
 import random
 import argparse
 from datetime import datetime
-from bingo_layouts import LAYOUTS, DEFAULT_LAYOUT
+from bingo_layouts import LAYOUTS, DEFAULT_LAYOUT, PAGE_SIZES, DEFAULT_PAGE_SIZE
 random.seed()
 
 def generate_bingo_numbers(_sort=True):
@@ -25,9 +25,10 @@ def generate_bingo_numbers(_sort=True):
 def main(args):
     file_loader = FileSystemLoader('.')
     env = Environment(loader=file_loader)
-    template = env.get_template(args.template)
+    template = env.get_template('bingo_template.html')
 
     layout = LAYOUTS[args.layout]
+    page_size = PAGE_SIZES[args.page_size]
 
     metadata = {
         "rango_tarjetas": f"1 al {args.numcards}",
@@ -37,7 +38,7 @@ def main(args):
 
     cards_data = {i + 1: (args.title, generate_bingo_numbers()) for i in range(args.numcards)}
 
-    rendered_html = template.render(cards=cards_data, metadata=metadata, layout=layout)
+    rendered_html = template.render(cards=cards_data, metadata=metadata, layout=layout, page_size=page_size)
 
     with open(args.output, "w") as file:
         file.write(rendered_html)
@@ -45,11 +46,12 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate Bingo Cards.')
-    parser.add_argument('--template', default='bingo_template_multipage.html', help='Template file name.')
     parser.add_argument('--title', default='Bingo Card', help='Title of the bingo cards.')
     parser.add_argument('--numcards', type=int, default=4, help='Number of bingo cards to generate.')
     parser.add_argument('--layout', default=DEFAULT_LAYOUT, choices=list(LAYOUTS.keys()),
                         help='Grid layout: 2x2 (default), 3x2, or 3x3.')
+    parser.add_argument('--page-size', default=DEFAULT_PAGE_SIZE, choices=list(PAGE_SIZES.keys()),
+                        dest='page_size', help='Paper size: a4 (default) or letter.')
 
     default_output = "bingo_" + datetime.now().strftime('%y%m%d') + ".html"
     parser.add_argument('--output', default=default_output, help='Output file name.')

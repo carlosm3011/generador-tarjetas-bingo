@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 # All measurements in mm, calculated for A4 (180mm x 267mm usable area after 15mm body padding).
+# Letter is slightly wider (185.9mm) but shorter (249.4mm); current cell sizes fit both.
+
+PAGE_SIZES = {
+    'a4':     {'label': 'A4',     'css': 'A4'},
+    'letter': {'label': 'Letter', 'css': 'letter'},
+}
+
+DEFAULT_PAGE_SIZE = 'a4'
 
 LAYOUTS = {
     '2x2': {

@@ -3,33 +3,31 @@ from flask import Flask, render_template, request, make_response
 from jinja2 import Environment, FileSystemLoader
 from datetime import datetime
 from bingo_generator import generate_bingo_numbers
-from bingo_layouts import LAYOUTS, DEFAULT_LAYOUT
+from bingo_layouts import LAYOUTS, DEFAULT_LAYOUT, PAGE_SIZES, DEFAULT_PAGE_SIZE
 
 app = Flask(__name__)
 
-TEMPLATES = {
-    'multipage': 'bingo_template_multipage.html',
-    'basic': 'bingo_template.html',
-    'a4': 'template_a4.html',
-}
-
 @app.route('/')
 def index():
-    return render_template('form.html', templates=TEMPLATES, layouts=LAYOUTS, default_layout=DEFAULT_LAYOUT)
+    return render_template('form.html',
+                           layouts=LAYOUTS,
+                           default_layout=DEFAULT_LAYOUT,
+                           page_sizes=PAGE_SIZES,
+                           default_page_size=DEFAULT_PAGE_SIZE)
 
 @app.route('/generate', methods=['POST'])
 def generate_bingo():
     title = request.form.get('title', 'Bingo Card')
     num_cards = int(request.form.get('numcards', 4))
-    template_key = request.form.get('template', 'multipage')
     layout_key = request.form.get('layout', DEFAULT_LAYOUT)
+    page_size_key = request.form.get('page_size', DEFAULT_PAGE_SIZE)
 
-    template_file = TEMPLATES.get(template_key, 'bingo_template_multipage.html')
     layout = LAYOUTS.get(layout_key, LAYOUTS[DEFAULT_LAYOUT])
+    page_size = PAGE_SIZES.get(page_size_key, PAGE_SIZES[DEFAULT_PAGE_SIZE])
 
     file_loader = FileSystemLoader('.')
     env = Environment(loader=file_loader)
-    template = env.get_template(template_file)
+    template = env.get_template('bingo_template.html')
 
     metadata = {
         "rango_tarjetas": f"1 al {num_cards}",
@@ -39,7 +37,7 @@ def generate_bingo():
 
     cards_data = {i + 1: (title, generate_bingo_numbers()) for i in range(num_cards)}
 
-    rendered_html = template.render(cards=cards_data, metadata=metadata, layout=layout)
+    rendered_html = template.render(cards=cards_data, metadata=metadata, layout=layout, page_size=page_size)
 
     response = make_response(rendered_html)
     response.headers['Content-Type'] = 'text/html'

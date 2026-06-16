@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Bingo Cards</title>
     <style>
+        @page {
+            size: {{ page_size.css }};
+            margin: 15mm;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -22,6 +27,13 @@
             grid-template-columns: repeat({{ layout.cols }}, 1fr);
             gap: {{ layout.card_gap }}mm;
             width: 100%;
+            page-break-after: always;
+        }
+
+        @media print {
+            .bingo-container:last-of-type {
+                page-break-after: auto;
+            }
         }
 
         .bingo-card {
@@ -55,15 +67,22 @@
     <div class="bingo-metadata">
         Tarjetas del {{ metadata['rango_tarjetas'] }}
     </div>
-    <div class="bingo-container">
-        {% for card_id, card_data in cards.items() %}
-        <div class="bingo-card">
-            <div class="bingo-title">{{ card_data[0] }}</div>
-            {% for number in card_data[1] %}
-                <div class="bingo-cell">{{ number }}</div>
+    {% set card_list = cards.items()|list %}
+    {% set cards_per_page = layout.cols * layout.rows %}
+    {% for i in range(0, card_list|length, cards_per_page) %}
+        <div class="bingo-container">
+            {% for j in range(i, i + cards_per_page) %}
+                {% if j < card_list|length %}
+                    {% set card_data = card_list[j] %}
+                    <div class="bingo-card">
+                        <div class="bingo-title">{{ card_data[1][0] }}</div>
+                        {% for number in card_data[1][1] %}
+                            <div class="bingo-cell">{{ number }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
-        {% endfor %}
-    </div>
+    {% endfor %}
 </body>
 </html>
