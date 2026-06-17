@@ -36,6 +36,8 @@ uv run python3 app.py
 ### Run Monte Carlo Simulation
 ```bash
 uv run python3 bingo_simulation.py --nmax 90 --cmax 200 --simulations 10000
+# Use --kmax to simulate cards with fewer numbers (must be ≤ nmax)
+uv run python3 bingo_simulation.py --nmax 90 --kmax 16 --cmax 200
 ```
 
 ## Architecture
